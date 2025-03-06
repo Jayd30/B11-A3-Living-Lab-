@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevBoard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .task-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .task {
+            width: 30%;
+            background: #eef;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            padding: 8px 12px;
+            border: none;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .log {
+            margin-top: 20px;
+            padding: 10px;
+            background: #eef;
+            border-radius: 5px;
+        }
+        .act1{
+            margin-right: 100px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>DevBoard</h2>
+        <p>Task Assigned: <span id="taskCount">5</span></p>
+    </div>
+    <div class="container">
+        
+        
+        <div class="task-box" id="tasks">
+            <div class="task">
+                <h4>Fix Mobile Button Issue</h4>
+                <p>Debug using Chrome DevTools, check for overlapping...</p>
+                <button onclick="completeTask(this)">Complete</button>
+            </div>
+            <div class="task">
+                <h4>Add Dark Mode</h4>
+                <p>Store user preference in localStorage, update CSS variables...</p>
+                <button onclick="completeTask(this)">Complete</button>
+            </div>
+            <div class="task">
+                <h4>Optimize Home Page</h4>
+                <p>Debug using Chrome DevTools, check for overlapping...</p>
+                <button onclick="completeTask(this)">Complete</button>
+            </div>
+            <div class="task">
+                <h4>Integrate OpenAI API</h4>
+                <p>Debug using Chrome DevTools, check for overlapping...</p>
+                <button onclick="completeTask(this)">Complete</button>
+            </div>
+            <div class="task">
+                <h4>Improve Job Searching</h4>
+                <p>Debug using Chrome DevTools, check for overlapping...</p>
+                <button onclick="completeTask(this)">Complete</button>
+            </div>
+            <div class="task">
+                <h4>Improve Job Searching</h4>
+                <p>Debug using Chrome DevTools, check for overlapping...</p>
+                <button onclick="completeTask(this)">Complete</button>
+            </div>
+        </div>
+
+        <div>
+            <h3 class="act1">Activity Log</h3>
+        <div class="log" id="activityLog">
+            <p>No tasks completed yet.</p>
+        </div>
+        </div>
+    </div>
+
+    <script>
+        var taskCount = 5;
+
+        function completeTask(button) {
+            button.disabled = true;
+            button.innerText = "Completed";
+            taskCount--;
+            document.getElementById("taskCount").innerText = taskCount;
+
+            let log = document.getElementById("activityLog");
+            let time = new Date().toLocaleString();
+            let taskName = button.parentElement.children[0].innerText;
+            let newLog = document.createElement("p");
+            newLog.innerText = `Completed: ${taskName} at ${time}`;
+            log.appendChild(newLog);
+        }
+    </script>
+</body>
+</html>
